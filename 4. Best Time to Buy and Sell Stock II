@@ -1,0 +1,19 @@
+Constraints
+1.On each day, you may decide to buy and/or sell the stock.
+2. You can only hold at most one share of the stock at any time. 
+
+Approach:
+1. Typical Valley and Peak Approach
+2. If yesterday was a valley and today is a peak we need to book profit.
+
+
+Solution:
+
+ int maxProfit(vector<int>& P) {
+        
+        int profit = 0;
+        for(int i = 1; i < size(P); i++)
+            if(P[i] > P[i-1])              // yesterday was valley, today is peak
+                profit += P[i] - P[i-1];   // buy yesterday, sell today
+        return profit;
+    }
