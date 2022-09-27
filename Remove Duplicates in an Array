@@ -1,0 +1,33 @@
+Constraints:
+1. We need to remove duplicates form an array without using extra space.
+
+2. Also we need to do modifications to the same array so that (let's say if K elements are unique) 
+   first k elements of the array should contain the unique elements 
+
+Approach:
+1. We will be using two pointer approach
+2. Right pointer will keep scaning throughout the array whereas left pointer will point to the index where next unique elements should be placed.
+3. In a way, left pointer  will tell us the number of unique characters as well.
+
+
+Solution :
+
+int removeDuplicates(vector<int>& nums) {
+        
+       int left=1, right=1;
+        
+        while(right<nums.size())
+        {
+            if(nums[right]==nums[right-1])
+           {
+               right++;
+           }
+            else
+            {
+                nums[left]=nums[right];
+                left++;
+                right++;
+            }
+        }
+        return left;
+    }
