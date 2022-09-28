@@ -1,0 +1,31 @@
+Constraints:
+1 <= nums.length <= 105
+-231 <= nums[i] <= 231 - 1
+0 <= k <= 10^5
+
+
+Approach:
+
+A simple  O(n) Space complexity solution for this problem would be to create another Vector and shift elements to the new vector accordingly. 
+
+A better solution would be to reverse the whole vector and then some parts of it to obtain right results.
+
+I have used k=k%vector_size like a hard rule/formula here. 
+Why?
+Because let's say k=7 and vector=[1,2,3,4], so if you do 7 rotations  or 7%4(i.e vector_size)=3 rotations your final results will be same.
+
+After this step reverse the whole array [4,3,2,1]
+Then reverse the first k=3 elements, so vector now will look like [2,3,4,1]
+After this you reverse the left over elements, in this case it is only the last element.
+
+
+void rotate(vector<int>& nums, int k) {
+        
+        k = k % nums.size();
+        reverse(nums.begin(),nums.end());
+        
+        reverse(nums.begin(),nums.begin()+k);
+        reverse(nums.begin()+k,nums.end());
+        
+        
+    }
