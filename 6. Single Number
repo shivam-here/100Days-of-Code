@@ -1,0 +1,23 @@
+Given a non-empty array of integers nums, every element appears twice except for one. Find that single one.
+
+Constraint
+You must implement a solution with a linear runtime complexity and use only constant extra space.
+
+
+Approach 
+1. We can use XOR operation. The trick is : A^B^A=B or A^B^A^C^D^C^D = B
+
+
+Solution
+
+int singleNumber(vector<int>& nums) {
+        
+        int ans=nums[0];
+        
+        for(int i=1;i<nums.size();i++)
+        {
+            ans=ans^nums[i];
+        }
+        return ans;
+        
+    }
