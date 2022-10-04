@@ -1,0 +1,38 @@
+You are given a large integer represented as an integer array digits, where each digits[i] is the ith digit of the integer. 
+The digits are ordered from most significant to least significant in left-to-right order. The large integer does not contain any leading 0's.
+
+Increment the large integer by one and return the resulting array of digits.
+
+
+Approach:
+There are 3 possible cases
+1. digit at unit's place is less than 9
+   e.g 1,2,3 or 1,2,8
+   In this case, just increment last element/digit of the number by one
+   
+2. digit at at unit's place is equal to 9
+   e.g 1,2,9 or 1,3,9,9
+   In this case replace 9's with 0's and increment 3 by 1
+   
+3. All digits are 9 e.g 9,9,9   
+   replace 9's with 0's and in the beginning insert 1
+   
+
+Solution:
+
+ vector<int> plusOne(vector<int>& digits) {
+        
+        for(int i = digits.size() - 1;i >= 0;i--){
+            if(digits[i] != 9){
+                digits[i]++;
+                cout<<digits[i]<<endl;
+                return digits;
+            }
+            else
+                digits[i] = 0;
+        }
+        digits.insert(digits.begin(),1);
+        return digits;
+       
+        
+    }
