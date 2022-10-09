@@ -1,0 +1,59 @@
+Problem Statement:
+Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+
+Each row must contain the digits 1-9 without repetition.
+Each column must contain the digits 1-9 without repetition.
+Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+
+Approach
+1. we can check if duplicates exists in any of rows,columns and box(3x3)
+2. We can also do this in a single pass:
+  i. We create 3 hash set arrays for row, column, box
+  ii. Insert elements there, in case we find an element already existing previously in the same array we return false
+  
+Solution:
+
+Determine if a 9 x 9 Sudoku board is valid. Only the filled cells need to be validated according to the following rules:
+
+Each row must contain the digits 1-9 without repetition.
+Each column must contain the digits 1-9 without repetition.
+Each of the nine 3 x 3 sub-boxes of the grid must contain the digits 1-9 without repetition.
+Note:
+
+A Sudoku board (partially filled) could be valid but is not necessarily solvable.
+Only the filled cells need to be validated according to the mentioned rules.
+
+
+Solution:
+
+bool isValidSudoku(vector<vector<char>>& board) {
+        
+        unordered_set<char>rowSet[9];
+        unordered_set<char>colSet[9];
+        unordered_set<char>boxSet[9];
+        for(int r=0;r<9;r++)
+        {
+            for(int c=0;c<9;c++)
+            {
+                if(board[r][c]=='.')
+                    continue;
+                else
+                {
+                    char val=board[r][c];
+                    int boxPos=(r/3)*3+c/3;// hard rule to find box Position
+                    if(rowSet[r].count(val)||colSet[c].count(val)||boxSet[boxPos].count(val))
+                        return false;
+                    
+                    rowSet[r].insert(val);
+                    colSet[c].insert(val);
+                    boxSet[boxPos].insert(val);
+                }
+            }
+        }
+        return true;
+        
+    }
+  
+  
+  
+  Youtube Video for detailed expalination - https://www.youtube.com/watch?v=rJ9NFK9s_mI
