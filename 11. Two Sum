@@ -1,0 +1,34 @@
+Problem Statement
+Given an array of integers nums and an integer target, return indices of the two numbers such that they add up to target.
+
+You may assume that each input would have exactly one solution, and you may not use the same element twice.
+
+You can return the answer in any order.
+
+Approach
+
+1. Sort the array and do a binary search k-arr[i]. If you find one retrun i and index of element k-arr[i].
+2. Store index of elements in a map and find if k-arr[i] exist
+
+Solution:
+ vector<int> twoSum(vector<int>& nums, int target) {
+        
+        unordered_map<int,int>indicesMap;
+        vector<int> result; //this will contain the indices
+        
+        for(int i=0;i<nums.size();i++)
+        {
+            if(indicesMap.find(target-nums[i])!=indicesMap.end())
+            {
+                result.push_back(indicesMap[target-nums[i]]);
+                result.push_back(i);
+                
+            }
+            else
+            {
+                indicesMap[nums[i]]=i;
+            }
+        }
+        return result;
+        
+    }
